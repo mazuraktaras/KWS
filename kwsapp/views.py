@@ -1,10 +1,7 @@
 from . import app, db
-from .models import User
+from .models import User, Role
+
 
 @app.route('/')
 def hello_world():
-    new_user = User(username='newIm')
-    print(repr(new_user))
-    db.session.add(new_user)
-    db.session.commit()
-    return 'Hello World!'
+    return f'Hello World!'
