@@ -11,4 +11,4 @@ db = SQLAlchemy(app)
 # All that modules must be imported after app object created due Flask developers recommendation
 from kwsapp import views, models
 
-db.create_all()
+# db.create_all()
