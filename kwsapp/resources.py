@@ -1,5 +1,5 @@
 from kwsapp import db
-from kwsapp.models import User, Role
+from .models import User, Role
 from faker import Faker
 
 
@@ -30,8 +30,17 @@ def initial_settings():
     db.session.commit()
 
 
+# role = Role.query.filter_by(name=role).first()
+
+def add_user(name, password, role='user'):
+
+    role = Role.query.filter_by(name=role).first()
+    new_user = User(name=name, role=role)
+    new_user.password = password
+
+    return
+
 def users_list():
     users = User.query.all()
     # print(users)
     return users
-
