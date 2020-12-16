@@ -15,3 +15,6 @@ def initial_settings():
     user.role = user_role
     db.session.add(user)
     db.session.commit()
+
+user = User()
+user.name = 'test'

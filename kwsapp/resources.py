@@ -1,5 +1,6 @@
 from kwsapp import db
 from .models import User, Role
+from sqlalchemy.exc import IntegrityError
 from faker import Faker
 
 
@@ -32,13 +33,23 @@ def initial_settings():
 
 # role = Role.query.filter_by(name=role).first()
 
-def add_user(name, password, role='user'):
 
-    role = Role.query.filter_by(name=role).first()
-    new_user = User(name=name, role=role)
-    new_user.password = password
+def add_user(name, email, password, role='user'):
+    try:
 
-    return
+        role = Role.query.filter_by(name=role).first()
+        new_user = User()
+        new_user.name = name
+        new_user.email = email
+        new_user.password = password
+        new_user.role = role
+        db.session.add(new_user)
+        db.session.commit()
+
+    except IntegrityError as err:
+        print(err.code)
+        db.session.rollback()
+
 
 def users_list():
     users = User.query.all()

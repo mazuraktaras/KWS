@@ -7,7 +7,7 @@ class User(db.Model):
 
     # Description of records in the database
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(128), unique=False)
+    name = db.Column(db.String(128), unique=True)
     email = db.Column(db.String(128), unique=True)
     password_hash = db.Column(db.String(512), unique=True)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
@@ -19,6 +19,13 @@ class User(db.Model):
     @password.setter
     def password(self, password):
         self.password_hash = hash512.hash(password)
+
+    def verify_password(self, password):
+        """
+        Takes password and checks if it matches the hash
+        :rtype: bool
+        """
+        return hash512.verify(password, self.password)
 
 
 def __repr__(self):
