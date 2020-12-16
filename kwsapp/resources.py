@@ -55,3 +55,4 @@ def users_list():
     users = User.query.all()
     # print(users)
     return users
+# trend
