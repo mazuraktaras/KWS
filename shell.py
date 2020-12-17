@@ -5,7 +5,6 @@ db.create_all()
 
 
 def initial_settings():
-
     admin_role = Role(name='admin')
     user_role = Role(name='user')
     guest_role = Role(name='guest')
@@ -15,6 +14,7 @@ def initial_settings():
     user.role = user_role
     db.session.add(user)
     db.session.commit()
+
 
 user = User()
 user.name = 'test'

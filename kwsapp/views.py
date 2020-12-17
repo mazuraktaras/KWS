@@ -10,3 +10,8 @@ def hello_world():
     # print(url_for('static', filename='main.css'))
     return render_template('users_index.html', users=users_list())
     # return f'Hello World! {info}'
+
+
+@app.route('/topnav')
+def topnav():
+    return render_template('top-nav.html')
