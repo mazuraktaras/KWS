@@ -215,11 +215,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table class="table table-bordered table-dark">
+                                <table class="table table-bordered">
                                     <thead>
                                     <tr>
-                                        <th style="width: 10px">ID</th>
-                                        <th style="width: max-content">Username</th>
+                                        <th style="width: 5%">ID</th>
+                                        <th>Name</th>
                                         <th>Email</th>
                                         <th style="width: 40px">Label</th>
                                         <th>Created</th>
@@ -228,15 +228,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     </thead>
                                     <tbody>
                                     {% for user in users %}
-                                    <tr>
-                                        <td>{{ user.id }}</td>
-                                        <td>{{ user.name }}</td>
-                                        <td>{{ user.email }}</td>
-                                        <td><span class="badge bg-warning">{{ user.role.name }}</span></td>
-                                        <td>17.12.2020</td>
-                                        <td>Action</td>
-                                    </tr>
+                                        <tr>
+                                            <td>200000</td>
+                                            <td class="text-center" style="width: 10%;">{{ user.name }}</td>
+                                            <td>{{ user.email }}</td>
+                                            <td style="width: auto;" class="bg-blue"><span
+                                                    class="w-100 h-100 badge bg-warning">{{ user.role.name }}</span>
+                                            </td>
+                                            <td>17.12.2020</td>
+                                            <td style="width: 10%;">
+                                                <button type="button" class="btn btn-info btn-block btn-flat" style="">
+                                                    <i class="fa fa-bell"></i>Edit
+                                                </button>
+                                            </td>
+                                        </tr>
                                     {% endfor %}
+
                                     <tr>
                                         <td>2.</td>
                                         <td>Clean database</td>

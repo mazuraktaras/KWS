@@ -31,9 +31,6 @@ def initial_settings():
     db.session.commit()
 
 
-# role = Role.query.filter_by(name=role).first()
-
-
 def add_user(name, email, password, role='user'):
     try:
 
@@ -53,6 +50,4 @@ def add_user(name, email, password, role='user'):
 
 def users_list():
     users = User.query.all()
-    # print(users)
     return users
-# trend
