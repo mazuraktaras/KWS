@@ -1,3 +1,4 @@
+from datetime import datetime
 from kwsapp import db
 from .models import User, Role
 from sqlalchemy.exc import IntegrityError
@@ -18,13 +19,15 @@ def initial_settings():
     db.session.add_all([admin_role, user_role, guest_role, inactive_role])
     user = User(name='masurak', email='masurak@ukr.net')
     user.role = admin_role
+    user.created_time = datetime.now()
     new_users = []
-    for count in range(10):
+    for count in range(100):
         print(fake.first_name(), fake.email())
         new_user = User()
         new_user.name = fake.unique.first_name()
         new_user.email = fake.unique.email()
         new_user.role = user_role
+        new_user.created_time = datetime.now()
         new_users.append(new_user)
     db.session.add(user)
     db.session.add_all(new_users)
@@ -40,6 +43,7 @@ def add_user(name, email, password, role='user'):
         new_user.email = email
         new_user.password = password
         new_user.role = role
+        new_user.created_time = datetime.now()
         db.session.add(new_user)
         db.session.commit()
 

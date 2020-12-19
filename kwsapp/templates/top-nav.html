@@ -17,7 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url_for('static', filename='AdminLTE/dist/css/adminlte.min.css') }}">
 </head>
-<body class="hold-transition layout-top-nav layout-footer-fixed">
+<body class="hold-transition layout-navbar-fixed layout-footer-fixed layout-top-nav">
 <div class="wrapper">
 
     <!-- Navbar -->
@@ -235,7 +235,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                             <td>
                                                 <span class="w-100 h-100 badge bg-secondary">{{ user.role.name }}</span>
                                             </td>
-                                            <td>1</td>
+                                            <td>
+                                                {{ user.created_time.strftime("%d-%m-%Y") }}
+                                            <br>
+                                                <small class="text-secondary">at {{ user.created_time.strftime("%H:%M:%S") }}</small>
+                                            </td>
                                             <td>
                                                 <button type="button" class="btn btn-info btn-block btn-flat" style="">
                                                     <i class="fas fa-edit"></i> Edit
