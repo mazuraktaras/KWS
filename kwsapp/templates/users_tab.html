@@ -2,7 +2,70 @@
 
 {% block users_tab %}
 
-    <p>Test</p>
+    <div class="w-75 container-fluid">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">All Users</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+
+                        <table class="table table-bordered">
+
+                            <thead>
+                            <tr class="text-center bg-secondary">
+                                <th><span><i class="fas fa-hashtag"></i></span>&nbsp;&nbsp;ID</th>
+                                <th><span><i class="fas fa-user"></i></span>&nbsp;&nbsp;Name</th>
+                                <th><span><i class="fas fa-at"></i></span>&nbsp;&nbsp;Email</th>
+                                <th><span><i class="fas fa-user-tag"></i></span>&nbsp;&nbsp;Role</th>
+                                <th><span><i class="fas fa-user-clock"></i></span>&nbsp;&nbsp;Created</th>
+                                <th>
+                                    <button type="button" class="btn btn-primary btn-block btn-flat" style="">
+                                            <i class="fas fa-user-plus"></i>&nbsp;&nbsp;Add user
+                                        </button>
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for user in users %}
+                                <tr class="text-center">
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.name }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>
+                                        <span class="w-100 h-100 badge bg-secondary">{{ user.role.name }}</span>
+                                    </td>
+                                    <td>
+                                        {{ user.created_time.strftime("%d-%m-%Y") }}
+                                        <br>
+                                        <small class="text-secondary">at {{ user.created_time.strftime("%H:%M:%S") }}</small>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-info btn-block btn-flat" style="">
+                                            <i class="fas fa-edit"></i> Edit
+                                        </button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer clearfix">
+                        <ul class="pagination pagination-sm m-0 float-right">
+                            <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
 
 {% endblock %}
 

@@ -16,6 +16,20 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ url_for('static', filename='AdminLTE/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url_for('static', filename='AdminLTE/dist/css/adminlte.min.css') }}">
+    <style>
+        .table .thead-light th {
+            background-color: yellow;
+
+        }
+
+        .table thead th {
+            vertical-align: middle;
+        }
+
+        .table tbody td {
+            vertical-align: middle;
+        }
+    </style>
 </head>
 <body class="hold-transition layout-navbar-fixed layout-footer-fixed layout-top-nav">
 <div class="wrapper">
@@ -209,64 +223,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Main content -->
         <section class="content">
-            <div class="w-75 container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">All Users</h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                                <table class="table table-bordered">
-                                    <thead>
-                                    <tr class="text-center bg-secondary">
-                                        <th style="width: 5%">ID</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Created</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    {% for user in users %}
-                                        <tr class="text-center">
-                                            <td>{{ user.id }}</td>
-                                            <td>{{ user.name }}</td>
-                                            <td>{{ user.email }}</td>
-                                            <td>
-                                                <span class="w-100 h-100 badge bg-secondary">{{ user.role.name }}</span>
-                                            </td>
-                                            <td>
-                                                {{ user.created_time.strftime("%d-%m-%Y") }}
-                                            <br>
-                                                <small class="text-secondary">at {{ user.created_time.strftime("%H:%M:%S") }}</small>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-info btn-block btn-flat" style="">
-                                                    <i class="fas fa-edit"></i> Edit
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer clearfix">
-                                <ul class="pagination pagination-sm m-0 float-right">
-                                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- /.container-fluid -->
+
+            <!-- Block with users list table -->
+            {% block users_tab %}{% endblock %}
+{#            <table class="table table-bordered">#}
+{#                <thead class="thead-light">#}
+{#                <tr>#}
+{#                    <th>#}
+{#                        Test#}
+{#                    </th>#}
+{#                    <th>#}
+{#                        Test#}
+{#                    </th>#}
+{#                    <th>#}
+{#                        Test#}
+{#                        <br>#}
+{#                        T#}
+{#                    </th>#}
+{#                </tr>#}
+{#                </thead>#}
+{##}
+{#            </table>#}
+
         </section>
 
         <!-- /.content -->
@@ -278,6 +256,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Control sidebar content goes here -->
     </aside>
     <!-- /.control-sidebar -->
+
 
     <!-- Main Footer -->
     <footer class="main-footer fixed">
