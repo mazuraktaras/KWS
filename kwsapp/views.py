@@ -14,4 +14,4 @@ def hello_world():
 
 @app.route('/topnav')
 def topnav():
-    return render_template('top-nav.html', users=users_list())
+    return render_template('admin.html', users=users_list())
