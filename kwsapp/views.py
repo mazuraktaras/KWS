@@ -1,6 +1,7 @@
 from . import app
-from flask import render_template
+from flask import redirect, render_template, url_for
 from .resources import users_list
+from .forms import SignupForm
 
 
 @app.route('/')
@@ -16,6 +17,14 @@ def topnav():
     return render_template('users_tab.html', users=users_list())
 
 
-@app.route('/admin/signup')
+@app.route('/admin/signup', methods=['GET', 'POST'])
 def signup():
-    return render_template('signup.html')
+    form = SignupForm()
+    # checks if form was submited and validated
+    if form.validate_on_submit():
+        # get values from form
+        username = form.username.data
+        password = form.password.data
+        return redirect(url_for('web_signup'))
+
+    return render_template('signup.html', form=form)
