@@ -1,7 +1,6 @@
-from . import app, db
-from .models import User, Role
-from flask import render_template, url_for
-from .resources import initial_settings, users_list
+from . import app
+from flask import render_template
+from .resources import users_list
 
 
 @app.route('/')
@@ -15,3 +14,8 @@ def hello_world():
 @app.route('/topnav')
 def topnav():
     return render_template('users_tab.html', users=users_list())
+
+
+@app.route('/admin/signup')
+def signup():
+    return render_template('signup.html')

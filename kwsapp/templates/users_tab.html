@@ -1,6 +1,6 @@
 {% extends "admin.html" %}
 
-{% block users_tab %}
+{% block content %}
 
     <div class="w-75 container-fluid">
         <div class="row">
@@ -22,9 +22,11 @@
                                 <th><span><i class="fas fa-user-tag"></i></span>&nbsp;&nbsp;Role</th>
                                 <th><span><i class="fas fa-user-clock"></i></span>&nbsp;&nbsp;Created</th>
                                 <th>
-                                    <button type="button" class="btn btn-primary btn-block btn-flat" style="">
+                                    <a href="{{ url_for('signup') }}">
+                                        <button type="button" class="btn btn-primary btn-block btn-flat" style="">
                                             <i class="fas fa-user-plus"></i>&nbsp;&nbsp;Add user
                                         </button>
+                                    </a>
                                 </th>
                             </tr>
                             </thead>
@@ -44,7 +46,7 @@
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-info btn-block btn-flat" style="">
-                                            <i class="fas fa-edit"></i> Edit
+                                            <i class="fas fa-edit"></i>&nbsp;&nbsp;Edit
                                         </button>
                                     </td>
                                 </tr>
