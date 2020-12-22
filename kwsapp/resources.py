@@ -58,6 +58,10 @@ def users_list():
 
 
 def user_exist(username, email):
-    user = User(name=username)
-    email = User(email=email)
-    return True
+    user = User.query.filter_by(name=username).first()
+    email = User.query.filter_by(email=email).first()
+    print(user)
+    print(email)
+    if user or email:
+        return True
+    return False
