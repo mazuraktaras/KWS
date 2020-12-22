@@ -7,7 +7,7 @@ class SignupForm(FlaskForm):
     """
     Describes the user credentials form in the frontend for signup and login
     """
-    username = StringField('Username', validators=[DataRequired(), Length(128)])
+    username = StringField('Username', validators=[DataRequired(), Length(max=128)])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = StringField('Password', validators=[DataRequired()])
-    submit = SubmitField('Sign me up')
+    # submit = SubmitField('Register')

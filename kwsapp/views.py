@@ -1,6 +1,6 @@
 from . import app
-from flask import redirect, render_template, url_for
-from .resources import users_list
+from flask import flash, redirect, render_template, url_for
+from .resources import users_list, user_exist
 from .forms import SignupForm
 
 
@@ -24,7 +24,12 @@ def signup():
     if form.validate_on_submit():
         # get values from form
         username = form.username.data
-        password = form.password.data
-        return redirect(url_for('web_signup'))
+        email = form.email.data
+        if user_exist(username, email):
+            print('Login name or email already exist')
+            return redirect(url_for('signup'))
+        else:
+            pass
+        return redirect(url_for('topnav'))
 
     return render_template('signup.html', form=form)

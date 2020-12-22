@@ -21,7 +21,7 @@ def initial_settings():
     user.role = admin_role
     user.created_time = datetime.now()
     new_users = []
-    for count in range(100):
+    for count in range(5):
         print(fake.first_name(), fake.email())
         new_user = User()
         new_user.name = fake.unique.first_name()
@@ -55,3 +55,9 @@ def add_user(name, email, password, role='user'):
 def users_list():
     users = User.query.all()
     return users
+
+
+def user_exist(username, email):
+    user = User(name=username)
+    email = User(email=email)
+    return True
