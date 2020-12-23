@@ -1,8 +1,9 @@
 from kwsapp import db
+from flask_login import UserMixin
 from passlib.hash import pbkdf2_sha512 as hash512
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = 'users'
 
     # Description of records in the database
@@ -43,4 +44,3 @@ class Role(db.Model):
 
     def __repr__(self):
         return '<Role %r>' % self.name
-

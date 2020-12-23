@@ -64,8 +64,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true"
                            aria-expanded="false" class="nav-link dropdown-toggle">Users</a>
                         <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
-                            <li><a href="#" class="dropdown-item">New user</a></li>
-                            <li><a href="#" class="dropdown-item">Some other action</a></li>
+                            <li><a href="{{ url_for('signup') }}" class="dropdown-item">New user</a></li>
+                            <li><a href="{{ url_for('users') }}" class="dropdown-item">All users</a></li>
 
                             <li class="dropdown-divider"></li>
 

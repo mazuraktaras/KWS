@@ -34,7 +34,7 @@ def initial_settings():
     db.session.commit()
 
 
-def add_user(name, email, password, role='user'):
+def add_user(name, email, password, role='inactive'):
     try:
 
         role = Role.query.filter_by(name=role).first()
@@ -60,8 +60,6 @@ def users_list():
 def user_exist(username, email):
     user = User.query.filter_by(name=username).first()
     email = User.query.filter_by(email=email).first()
-    print(user)
-    print(email)
     if user or email:
         return True
     return False
