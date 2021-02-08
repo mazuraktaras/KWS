@@ -1,5 +1,11 @@
+# import sys
+
+# sys.path.insert(0, '/home/ubuntu/app/KWS')
+# sys.path.insert(0, '/home/ubuntu/app/KWS/kwsapp')
+
 from datetime import datetime
 from kwsapp import db
+# from . import db
 from .models import User, Role
 from sqlalchemy.exc import IntegrityError
 from faker import Faker
