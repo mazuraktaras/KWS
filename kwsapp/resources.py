@@ -2,7 +2,6 @@
 
 # sys.path.insert(0, '/home/ubuntu/app/KWS')
 # sys.path.insert(0, '/home/ubuntu/app/KWS/kwsapp')
-# test
 
 from datetime import datetime
 from kwsapp import db
