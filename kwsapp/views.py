@@ -29,7 +29,7 @@ def users():
 @app.route('/admin/signup', methods=['GET', 'POST'])
 def signup():
     form = SignupForm()
-    # checks if form was submited and validated
+    # checks if form was submitted and validated
     if form.validate_on_submit():
         # get values from form
         username = form.username.data
