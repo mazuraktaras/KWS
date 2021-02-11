@@ -1,0 +1,125 @@
+{% extends "admin.html" %}
+
+{% block content %}
+    {% for field, errors in form.errors.items() %}
+        <div class="alert alert-error">
+            {{ form[field].label }}: {{ ', '.join(errors) }}
+        </div>
+    {% endfor %}
+    {% for field in form.errors %}
+        {% for error in form.errors[field] %}
+            <div class="alert alert-error">
+                <strong>Error!</strong> {{ error }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% if form.errors %}
+
+        {% for field_name, field_errors in form.errors|dictsort if field_errors %}
+
+            {% for error in field_errors %}
+                <div class="alert alert-danger">
+                    <ul>
+                        <li>{{ form[field_name].label }}: {{ error }}</li>
+                    </ul>
+                </div>
+            {% endfor %}
+
+        {% endfor %}
+
+    {% endif %}
+
+
+    <div class="register-page" >
+        <div class="register-box">
+            <div class="register-logo">
+                <a href="../../index2.html"><b>KWS</b></a>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <p class="login-box-msg">User authorization</p>
+                    {% for category,  message in get_flashed_messages(with_categories=True) %}
+                        <div class="alert alert-{{ category }} alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h6><i class="icon fas fa-ban"></i> Alert!</h6>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+                    {% if current_user.is_authenticated %}
+                        <div class="alert alert-warning alert-dismissible">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <h6><i class="icon fas fa-exclamation-triangle"></i> Warning!</h6>
+                            <h6>
+                                Another user is currently logged in.<br>
+                                Please logout first!
+                            </h6>
+
+                            <div class="row">
+                                <div class="col">
+                                <button class="btn btn-sm btn-danger float-right" onclick="location.href='{{ url_for('logout') }}'" type="button">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                                </button>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <form method="post">
+
+                        {#{{ form.csrf_token }}#}
+
+                        <!--<div class="input-group mb-3">
+                            {#<input type="text" class="form-control" placeholder="Full name">#}
+                            {# {{ form.username(id='username', type="text", class="form-control", placeholder="Login name") }} #}
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="input-group mb-3">
+                            {#<input type="email" class="form-control" placeholder="Email">#}
+                            {{ form.email(id='email', type='email', class='form-control', placeholder="Email") }}
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-at"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-3">
+                            {#<input type="password" class="form-control" placeholder="Password">#}
+                            {{ form.password(id='password', type='password', class='form-control', placeholder='Password') }}
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="input-group mb-3">
+                            <input type="password" class="form-control" placeholder="Retype password">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="row">
+
+                            <div class="col">
+                                <button type="submit" class="btn btn-info float-right">
+                                    <i class="fas fa-sign-in-alt"></i>  Login
+                                </button>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    </form>
+                    <!--<a href="login.html" class="text-center">I already have a membership</a>-->
+                </div>
+                <!-- /.form-box -->
+            </div><!-- /.card -->
+        </div>
+        <!-- /.register-box -->
+    </div>
+{% endblock %}

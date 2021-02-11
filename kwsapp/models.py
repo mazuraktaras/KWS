@@ -27,7 +27,7 @@ class User(UserMixin, db.Model):
         Takes password and checks if it matches the hash
         :rtype: bool
         """
-        return hash512.verify(password, self.password)
+        return hash512.verify(password, self.password_hash)
 
 
 def __repr__(self):

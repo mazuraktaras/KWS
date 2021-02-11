@@ -1,24 +1,49 @@
 from . import app
 from flask import flash, redirect, render_template, url_for
 from . import login_manager
-from flask_login import login_required, login_user
+from flask_login import current_user, login_required, login_user, logout_user
 from .resources import add_user, users_list, user_exist
-from .forms import SignupForm
+from .forms import SignupForm, LoginForm
 from .models import User
 
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.get(user_id)
+    return User.query.get(user_id)
 
 
 @app.route('/')
 @login_required
-def hello_world():
-    # initial_settings()
-    # print(url_for('static', filename='main.css'))
-    return render_template('users_index.html', users=users_list())
-    # return f'Hello World! {info}'
+def base():
+    return render_template('admin.html')
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+
+    if form.validate_on_submit():
+        email = form.email.data
+        password = form.password.data
+        user = User.query.filter_by(email=email).first()
+        if current_user.is_authenticated:
+            return redirect(url_for('login'))
+        if user and user.verify_password(password):
+            login_user(user)
+            print(current_user.name)
+            return redirect(url_for('base'))
+        else:
+            flash('This user does not exist or the password is incorrect.', 'danger')
+    return render_template('login.html', form=form)
+
+
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    print(current_user.name, current_user.is_authenticated)
+    logout_user()
+    # TODO: Need to check why the session remembers the user after closing the browser.
+    print(current_user.is_authenticated)
+    return 'Logout'
 
 
 @app.route('/admin/users')
