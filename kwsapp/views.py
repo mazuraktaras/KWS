@@ -13,9 +13,9 @@ def load_user(user_id):
 
 
 @app.route('/')
-@login_required
+# @login_required
 def base():
-    return render_template('admin.html')
+    return render_template('base.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -23,27 +23,34 @@ def login():
     form = LoginForm()
 
     if form.validate_on_submit():
+
         email = form.email.data
         password = form.password.data
         user = User.query.filter_by(email=email).first()
+
         if current_user.is_authenticated:
             return redirect(url_for('login'))
+
         if user and user.verify_password(password):
-            login_user(user)
-            print(current_user.name)
+
+            login_user(user, remember=False)
+            # print(current_user.name)
             return redirect(url_for('base'))
+
         else:
+
             flash('This user does not exist or the password is incorrect.', 'danger')
+
     return render_template('login.html', form=form)
 
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
-    print(current_user.name, current_user.is_authenticated)
+    # print(current_user.name, current_user.is_authenticated)
     logout_user()
     # TODO: Need to check why the session remembers the user after closing the browser.
-    print(current_user.is_authenticated)
-    return 'Logout'
+    # print(current_user.is_authenticated)
+    return redirect(url_for('login'))
 
 
 @app.route('/admin/users')

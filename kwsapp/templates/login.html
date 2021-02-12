@@ -1,4 +1,4 @@
-{% extends "admin.html" %}
+{% extends "base.html" %}
 
 {% block content %}
     {% for field, errors in form.errors.items() %}
@@ -48,14 +48,14 @@
                     {% endfor %}
 
                     {% if current_user.is_authenticated %}
-                        <div class="alert alert-warning alert-dismissible">
+                        <div class="alert alert-warning alert-dismissible pr-3 fade show">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                             <h6><i class="icon fas fa-exclamation-triangle"></i> Warning!</h6>
                             <h6>
                                 Another user is currently logged in.<br>
                                 Please logout first!
                             </h6>
-
+                            <hr>
                             <div class="row">
                                 <div class="col">
                                 <button class="btn btn-sm btn-danger float-right" onclick="location.href='{{ url_for('logout') }}'" type="button">
