@@ -13,6 +13,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(512), unique=True)
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     created_time = db.Column(db.DateTime)
+    email_confirmed = db.Column(db.Boolean, default=False)
 
     @property
     def password(self):
