@@ -26,6 +26,7 @@ def login():
 
         email = form.email.data
         password = form.password.data
+
         user = User.query.filter_by(email=email).first()
 
         if current_user.is_authenticated:

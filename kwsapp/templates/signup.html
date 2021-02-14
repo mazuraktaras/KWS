@@ -1,4 +1,4 @@
-{% extends "admin.html" %}
+{% extends "base.html" %}
 
 {% block content %}
     {% for field, errors in form.errors.items() %}
@@ -28,7 +28,7 @@
         {% endfor %}
 
     {% endif %}
-    <div class="register-page" style="background-color: #dbf9eb">
+    <div class="register-page">
         <div class="register-box">
             <div class="register-logo">
                 <a href="../../index2.html"><b>KWS</b></a>
@@ -73,16 +73,27 @@
                                 </div>
                             </div>
                         </div>
+                            {% if form.password.errors %}
+                                {% for error in  form.password.errors%}
+                                    <div class="input-group-text mb-1 bg-danger">{{ error }}</div>
+                                {% endfor %}
+                            {% endif %}
+
                         <div class="input-group mb-3">
-                            <input type="password" class="form-control" placeholder="Retype password">
+                            {# <input type="password" class="form-control" placeholder="Retype password"> #}
+                            {{ form.password_(id='password', type='password', class='form-control', placeholder='Retype password') }}
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-lock"></span>
                                 </div>
                             </div>
                         </div>
+                            {% if form.password_.errors %}
+                                {% for error in  form.password_.errors%}
+                                    <div class="input-group-text mb-1 bg-danger">{{ error }}</div>
+                                {% endfor %}
+                            {% endif %}
                         <div class="row">
-
                             <div class="col">
                                 <button type="submit" class="btn btn-info float-right">
                                     <i class="fas fa-user-plus"></i> Register
@@ -91,7 +102,7 @@
                             <!-- /.col -->
                         </div>
                     </form>
-                    <a href="login.html" class="text-center">I already have a membership</a>
+                    <a href="{{ url_for('login') }}" class="text-center">I already have a membership</a>
                 </div>
                 <!-- /.form-box -->
             </div><!-- /.card -->
