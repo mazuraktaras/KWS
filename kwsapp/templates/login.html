@@ -30,7 +30,7 @@
     {% endif %}
 
 
-    <div class="register-page" >
+    <div class="register-page">
         <div class="register-box">
             <div class="register-logo">
                 <a href="../../index2.html"><b>KWS</b></a>
@@ -40,7 +40,7 @@
                 <div class="card-body">
                     <p class="login-box-msg">User authorization</p>
                     {% for category,  message in get_flashed_messages(with_categories=True) %}
-                        <div class="alert alert-{{ category }} alert-dismissible">
+                        <div class="alert alert-{{ category }} alert-dismissible pr-3">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                             <h6><i class="icon fas fa-ban"></i> Alert!</h6>
                             {{ message }}
@@ -58,9 +58,10 @@
                             <hr>
                             <div class="row">
                                 <div class="col">
-                                <button class="btn btn-sm btn-danger float-right" onclick="location.href='{{ url_for('logout') }}'" type="button">
-                                <i class="fas fa-sign-out-alt"></i> Logout
-                                </button>
+                                    <button class="btn btn-sm btn-danger float-right"
+                                            onclick="location.href='{{ url_for('logout') }}'" type="button">
+                                        <i class="fas fa-sign-out-alt"></i> Logout
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +82,7 @@
                         </div>-->
                         <div class="input-group mb-3">
                             {#<input type="email" class="form-control" placeholder="Email">#}
-                            {{ form.email(id='email', type='email', class='form-control', placeholder="Email") }}
+                            {{ form.email(id='email', type='email', class='form-control', placeholder='Email', value='') }}
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-at"></span>
@@ -109,7 +110,7 @@
 
                             <div class="col">
                                 <button type="submit" class="btn btn-info float-right">
-                                    <i class="fas fa-sign-in-alt"></i>  Login
+                                    <i class="fas fa-sign-in-alt"></i> Login
                                 </button>
                             </div>
                             <!-- /.col -->
