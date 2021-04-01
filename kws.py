@@ -8,5 +8,5 @@ from kwsapp import app
 if __name__ == '__main__':
     app.run()
 
-# export FLASK_APP=hello.py
+# export FLASK_APP=kws.py
 # export FLASK_ENV=development

@@ -31,7 +31,8 @@
     <div class="register-page">
         <div class="register-box">
             <div class="register-logo">
-                <a href="../../index2.html"><b>KWS</b></a>
+                {#<a href="../../index2.html"><b>KWS</b></a>#}
+                <a href="{{ url_for('welcome') }}"><b>KWS</b></a>
             </div>
 
             <div class="card">
@@ -81,15 +82,15 @@
 
                         <div class="input-group mb-3">
                             {# <input type="password" class="form-control" placeholder="Retype password"> #}
-                            {{ form.password_(id='password', type='password', class='form-control', placeholder='Retype password') }}
+                            {{ form.password_2(id='password_2', type='password', class='form-control', placeholder='Retype password') }}
                             <div class="input-group-append">
                                 <div class="input-group-text">
                                     <span class="fas fa-lock"></span>
                                 </div>
                             </div>
                         </div>
-                            {% if form.password_.errors %}
-                                {% for error in  form.password_.errors%}
+                            {% if form.password_2.errors %}
+                                {% for error in  form.password_2.errors%}
                                     <div class="input-group-text mb-1 bg-danger">{{ error }}</div>
                                 {% endfor %}
                             {% endif %}

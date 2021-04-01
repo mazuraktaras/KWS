@@ -5,7 +5,7 @@
 
 from datetime import datetime
 from kwsapp import db
-# from . import db
+from .mail import confirm_email_message
 from .models import User, Role
 from sqlalchemy.exc import IntegrityError
 from faker import Faker
@@ -52,7 +52,10 @@ def add_user(name, email, password, role='inactive'):
         new_user.created_time = datetime.now()
         db.session.add(new_user)
         db.session.commit()
+        # send_email(new_user)
+        confirm_email_message(new_user)
 
+        # print(new_user.generate_email_confirm_token())
     except IntegrityError as err:
         print(err.code)
         db.session.rollback()
