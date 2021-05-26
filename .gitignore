@@ -3,3 +3,6 @@
 /kwsapp/static/AdminLTE/
 /migrations/
 /kwsapp/config.py
+/__pycache__/
+/kwsapp/__pycache__/
+/kwsapp/kws.db
